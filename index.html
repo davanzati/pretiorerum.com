@@ -48,23 +48,57 @@
         header {
             text-align: center;
             margin-bottom: 3rem;
-            padding-top: 2rem;
+            padding: 3rem 1rem 2rem;
+            border-bottom: 1px solid var(--florentine-gold);
+        }
+
+        .header-flourish {
+            color: var(--florentine-gold);
+            font-size: 1.2em;
+            letter-spacing: 8px;
+            margin-bottom: 1rem;
         }
 
         h1 {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 2.5rem;
-            font-weight: 400;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-            color: var(--ink);
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.75rem;
+            color: var(--medici-red);
+            text-shadow: 0 2px 4px rgba(139, 38, 53, 0.15);
         }
 
         .subtitle {
             font-style: italic;
-            font-size: 1.25rem;
-            color: var(--gold);
+            font-size: 1.3rem;
+            color: var(--ink-brown);
             margin-bottom: 1.5rem;
+        }
+
+        .header-desc {
+            font-size: 1.1rem;
+            color: var(--ink-brown);
+            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            text-align: center;
+        }
+
+        .header-attribution {
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--ink-light);
+        }
+
+        .header-attribution a {
+            color: var(--medici-red);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .header-attribution a:hover {
+            text-decoration: underline;
         }
 
         .epigraph {
@@ -619,8 +653,11 @@
 <body>
     <div class="container">
         <header>
-            <h1>Epistolae de Pretio Rerum</h1>
-            <div class="subtitle">Letters on the Price of Things</div>
+            <div class="header-flourish">✦ ❧ ✦</div>
+            <h1>PRETIO RERUM</h1>
+            <div class="subtitle">"Epistolae de Pretio Rerum" — Letters on the Price of Things</div>
+            <p class="header-desc">A collection of charts, tables, and analyses concerning the true value of gold, silver, and worldly commodities in this age of paper abundance.</p>
+            <p class="header-attribution">Compiled from the correspondence of <a href="https://en.wikipedia.org/wiki/Mart%C3%ADn_de_Azpilcueta">Martín de Azpilcueta</a> and <a href="https://en.wikipedia.org/wiki/Bernardo_Davanzati">Bernardo Davanzati</a>, edited by <a href="https://en.wikipedia.org/wiki/Abraham_Ortelius">Ortelius</a></p>
         </header>
 
         <div class="epigraph">
