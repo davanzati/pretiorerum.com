@@ -411,6 +411,102 @@
             border-radius: 3px;
         }
 
+        .market-hours-card {
+            background: linear-gradient(135deg, rgba(45,90,74,0.08), rgba(201,162,39,0.05));
+            border: 1px solid var(--verde-antico);
+            border-radius: 4px;
+            padding: 15px 20px;
+            margin: 15px auto;
+            max-width: 950px;
+        }
+
+        .market-hours-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1em;
+            font-weight: 600;
+            color: var(--verde-antico);
+            letter-spacing: 2px;
+            margin-bottom: 3px;
+        }
+
+        .market-hours-subtitle {
+            font-size: 0.8em;
+            color: var(--ink-light);
+            margin-bottom: 10px;
+        }
+
+        .current-session {
+            font-size: 0.85em;
+            color: var(--florentine-gold);
+            font-weight: 500;
+            margin-bottom: 12px;
+            padding: 6px 12px;
+            background: rgba(201,162,39,0.1);
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        .market-grid-footer {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .market-col-header {
+            font-family: 'Cinzel', serif;
+            font-size: 0.75em;
+            font-weight: 600;
+            color: var(--ink-brown);
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid rgba(201,162,39,0.3);
+        }
+
+        .market-item {
+            font-size: 0.8em;
+            color: var(--ink-light);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .market-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #888;
+            flex-shrink: 0;
+        }
+
+        .market-dot.open {
+            background: var(--verde-antico);
+            box-shadow: 0 0 6px var(--verde-antico);
+        }
+
+        .market-dot.closed {
+            background: #888;
+        }
+
+        .market-time {
+            margin-left: auto;
+            font-size: 0.9em;
+            color: #999;
+        }
+
+        .market-hours-note {
+            font-size: 0.7em;
+            color: var(--ink-light);
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        #utcClock {
+            color: var(--verde-antico);
+            font-weight: 600;
+        }
+
         @media (max-width: 800px) {
             .footer-links-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -520,6 +616,27 @@
             <div class="footer-updated">I Februarii MMXXVI · 20260201 · 15:15 UTC</div>
         </div>
 
+        <div class="market-hours-card">
+            <div class="market-hours-title">Horae Mercatorum</div>
+            <div class="market-hours-subtitle">Global Precious Metals Markets</div>
+            <div class="current-session" id="currentSession">Loading...</div>
+            <div class="market-grid-footer">
+                <div class="market-col">
+                    <div class="market-col-header">Eastern</div>
+                    <div class="market-item"><span class="market-dot" id="dot-shanghai"></span> Shanghai (SGE) <span class="market-time">01:00-07:00</span></div>
+                    <div class="market-item"><span class="market-dot" id="dot-tokyo"></span> Tokyo (TOCOM) <span class="market-time">23:45-06:15</span></div>
+                    <div class="market-item"><span class="market-dot" id="dot-hongkong"></span> Hong Kong (CGSE) <span class="market-time">23:00-21:00</span></div>
+                </div>
+                <div class="market-col">
+                    <div class="market-col-header">Western</div>
+                    <div class="market-item"><span class="market-dot" id="dot-london"></span> London (LBMA) <span class="market-time">08:00-17:00</span></div>
+                    <div class="market-item"><span class="market-dot" id="dot-comex"></span> New York (COMEX) <span class="market-time">23:00-22:00</span></div>
+                    <div class="market-item"><span class="market-dot" id="dot-fix"></span> LBMA Fix <span class="market-time">10:30 & 15:00</span></div>
+                </div>
+            </div>
+            <div class="market-hours-note">All times UTC · <span id="utcClock">--:--</span></div>
+        </div>
+
         <div class="trader-card">
             <a href="https://reddit.com/u/Davanzati" target="_blank" class="trader-name">u/Davanzati</a>
             <span class="trader-flair">S: 0 | B: 0</span>
@@ -574,5 +691,62 @@
 
         <div class="footer-flourish">✦ ❧ ✦</div>
     </footer>
+
+    <script>
+    // Market Hours - Live Updates
+    const markets = {
+        shanghai: { start: 1, end: 7, overnight: false },
+        tokyo: { start: 23.75, end: 6.25, overnight: true },
+        hongkong: { start: 23, end: 21, overnight: true },
+        london: { start: 8, end: 17, overnight: false },
+        comex: { start: 23, end: 22, overnight: true, hasBreak: true, breakStart: 22, breakEnd: 23 },
+        fix: { times: [10.5, 15], duration: 0.25 }
+    };
+
+    function isOpen(market, hour, day) {
+        if (day === 6) return false;
+        if (day === 0 && hour < 23) return false;
+
+        const m = markets[market];
+        if (m.times) {
+            return m.times.some(t => hour >= t && hour < t + m.duration);
+        }
+        if (m.hasBreak && hour >= m.breakStart && hour < m.breakEnd) return false;
+        if (m.overnight) {
+            return hour >= m.start || hour < m.end;
+        }
+        return hour >= m.start && hour < m.end;
+    }
+
+    function getSession(hour, day) {
+        if (day === 6 || (day === 0 && hour < 23)) return 'Weekend — Markets Closed';
+        if (hour >= 13.5 && hour < 17) return 'London + New York Overlap (Peak Liquidity)';
+        if (hour >= 8 && hour < 13.5) return 'London Session';
+        if (hour >= 13.5 && hour < 18.5) return 'New York Session';
+        if (hour >= 23 || hour < 7) return 'Asian Session';
+        if (hour >= 22 && hour < 23) return 'COMEX Maintenance';
+        return 'Transition Period';
+    }
+
+    function updateMarkets() {
+        const now = new Date();
+        const hour = now.getUTCHours() + now.getUTCMinutes() / 60;
+        const day = now.getUTCDay();
+
+        document.getElementById('utcClock').textContent =
+            now.toISOString().slice(11, 16) + ' UTC';
+        document.getElementById('currentSession').textContent = getSession(hour, day);
+
+        ['shanghai', 'tokyo', 'hongkong', 'london', 'comex', 'fix'].forEach(m => {
+            const dot = document.getElementById('dot-' + m);
+            if (dot) {
+                dot.className = 'market-dot ' + (isOpen(m, hour, day) ? 'open' : 'closed');
+            }
+        });
+    }
+
+    updateMarkets();
+    setInterval(updateMarkets, 60000);
+    </script>
 </body>
 </html>
