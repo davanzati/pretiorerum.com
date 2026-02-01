@@ -507,6 +507,91 @@
             font-weight: 600;
         }
 
+        /* Rotating Philosopher Quotes */
+        .philosopher-quote {
+            background: linear-gradient(135deg, rgba(139,38,53,0.06) 0%, rgba(201,162,39,0.08) 50%, rgba(139,38,53,0.06) 100%);
+            border: 2px solid var(--florentine-gold);
+            border-radius: 4px;
+            padding: 30px 45px;
+            margin: 0 auto 2rem;
+            max-width: 680px;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1), inset 0 0 60px rgba(255,253,245,0.4);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .philosopher-quote::before,
+        .philosopher-quote::after {
+            content: '❧';
+            position: absolute;
+            color: var(--florentine-gold);
+            font-size: 1.2em;
+        }
+
+        .philosopher-quote::before { top: 10px; left: 15px; }
+        .philosopher-quote::after { bottom: 10px; right: 15px; transform: rotate(180deg); }
+
+        .quote-text {
+            font-size: 1.1em;
+            font-style: italic;
+            color: var(--ink-brown);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .quote-author {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85em;
+            color: var(--medici-red);
+            letter-spacing: 1px;
+        }
+
+        .quote-work {
+            font-size: 0.8em;
+            color: var(--ink-light);
+            font-style: italic;
+        }
+
+        .quote-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .quote-nav-btn {
+            background: rgba(201,162,39,0.1);
+            border: 1px solid var(--florentine-gold);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            color: var(--florentine-gold);
+            font-size: 0.9em;
+            transition: all 0.2s;
+        }
+
+        .quote-nav-btn:hover {
+            background: var(--florentine-gold);
+            color: white;
+        }
+
+        .quote-nav-btn.paused {
+            background: var(--medici-red);
+            border-color: var(--medici-red);
+            color: white;
+        }
+
+        .quote-counter {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8em;
+            color: var(--ink-light);
+            min-width: 50px;
+            text-align: center;
+        }
+
         @media (max-width: 800px) {
             .footer-links-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -584,6 +669,21 @@
                 This is not prediction. It is observation. The mechanics of debasement, the distribution of inflation, the arithmetic of debt&mdash;these do not change because centuries pass.
             </p>
         </section>
+
+        <div class="divider">* * *</div>
+
+        <!-- Rotating Quote -->
+        <div class="philosopher-quote" id="philosopher-quote">
+            <div class="quote-nav">
+                <button class="quote-nav-btn" id="prev-quote" title="Previous quote">&larr;</button>
+                <span class="quote-counter" id="quote-counter">1 / 24</span>
+                <button class="quote-nav-btn" id="pause-quote" title="Pause rotation">||</button>
+                <button class="quote-nav-btn" id="next-quote" title="Next quote">&rarr;</button>
+            </div>
+            <p class="quote-text" id="quote-text">"Gold is the sovereign of all sovereigns."</p>
+            <p class="quote-author" id="quote-author">— Bernardo Davanzati</p>
+            <p class="quote-work" id="quote-work">Lezione delle Monete, 1588</p>
+        </div>
 
         <div class="divider">* * *</div>
 
@@ -747,6 +847,95 @@
 
     updateMarkets();
     setInterval(updateMarkets, 60000);
+
+    // Philosopher Quotes
+    const QUOTES = [
+        { text: "Gold and Silver contribute very little in their own nature to our Lives... yet Men have agreed to make those Metals of equal value to all other things.", author: "Bernardo Davanzati", work: "A Discourse upon Coins, 1588" },
+        { text: "The quantity of gold and silver in Spain increased due to the discovery of the Indies, and prices rose accordingly.", author: "Martín de Azpilcueta", work: "Comentario Resolutorio de Cambios, 1556" },
+        { text: "Other things being equal, in countries where there is a great scarcity of money, all other saleable goods are given for less money than where it is abundant.", author: "Martín de Azpilcueta", work: "Comentario Resolutorio de Cambios, 1556" },
+        { text: "Money is like muck, not good except it be spread.", author: "Francis Bacon", work: "Essays, 1625" },
+        { text: "Gold is the money of monarchs; barter is the money of peasants; but credit is the money of gentlemen.", author: "Senator James John Ingalls", work: "Speech in the U.S. Senate, 1878" },
+        { text: "The decrease in purchasing power incurred by holders of money due to inflation imparts gains to the issuers of money.", author: "St. Louis Federal Reserve", work: "Federal Reserve Bank Review, 2012" },
+        { text: "In the absence of the gold standard, there is no way to protect savings from confiscation through inflation.", author: "Alan Greenspan", work: "Gold and Economic Freedom, 1966" },
+        { text: "Gold still represents the ultimate form of payment in the world.", author: "Alan Greenspan", work: "Testimony to Congress, 1999" },
+        { text: "The study of money, above all other fields in economics, is one in which complexity is used to disguise truth or to evade truth.", author: "John Kenneth Galbraith", work: "Money: Whence It Came, Where It Went, 1975" },
+        { text: "By a continuing process of inflation, governments can confiscate, secretly and unobserved, an important part of the wealth of their citizens.", author: "John Maynard Keynes", work: "The Economic Consequences of the Peace, 1919" },
+        { text: "Lenin was certainly right. There is no subtler, no surer means of overturning the existing basis of society than to debauch the currency.", author: "John Maynard Keynes", work: "The Economic Consequences of the Peace, 1919" },
+        { text: "The gold standard, in one form or another, will prevail long after the present rash of national fiats is forgotten or remembered only in currency museums.", author: "Hans Sennholz", work: "The Age of Inflation, 1979" },
+        { text: "Paper money eventually returns to its intrinsic value — zero.", author: "Voltaire", work: "Attributed, 18th century" },
+        { text: "All money is a matter of belief.", author: "Adam Smith", work: "Attributed" },
+        { text: "When you have made evil the means of survival, do not expect men to remain good.", author: "Ayn Rand", work: "Atlas Shrugged, 1957" },
+        { text: "Gold has worked down from Alexander's time. When something holds good for two thousand years I do not believe it can be so because of prejudice or mistaken theory.", author: "Bernard Baruch", work: "Attributed" },
+        { text: "There is no means of avoiding the final collapse of a boom brought about by credit expansion.", author: "Ludwig von Mises", work: "Human Action, 1949" },
+        { text: "Government is the only agency that can take a useful commodity like paper, slap some ink on it, and make it totally worthless.", author: "Ludwig von Mises", work: "Attributed" },
+        { text: "Gold would have value if for no other reason than that it enables a citizen to fashion his financial escape from the state.", author: "William F. Rickenbacker", work: "Wooden Nickels, 1966" },
+        { text: "With the determination of the value of money also, the law of supply and demand cannot be violated.", author: "Carl Menger", work: "Principles of Economics, 1871" },
+        { text: "The history of fiat money is little more than a register of monetary follies and inflations.", author: "Richard Ebeling", work: "The Future of the Dollar, 2008" },
+        { text: "Stability breeds instability.", author: "Hyman Minsky", work: "Financial Instability Hypothesis, 1992" },
+        { text: "If you don't trust gold, do you trust the logic of taking a beautiful pine tree, worth about $4,000, and cutting it up to make $1 billion worth of paper?", author: "Kenneth J. Gerbino", work: "Attributed" },
+        { text: "The monetary sin of the West is the exorbitant privilege granted to the dollar.", author: "Jacques Rueff", work: "The Monetary Sin of the West, 1972" }
+    ];
+
+    let quoteIndex = Math.floor(Math.random() * QUOTES.length);
+    let isPaused = false;
+    let rotationInterval;
+
+    function displayQuote(index, animate = true) {
+        const q = QUOTES[index];
+        const el = document.getElementById('philosopher-quote');
+
+        if (animate) {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(10px)';
+        }
+
+        setTimeout(() => {
+            document.getElementById('quote-text').textContent = `"${q.text}"`;
+            document.getElementById('quote-author').textContent = `— ${q.author}`;
+            document.getElementById('quote-work').textContent = q.work;
+            document.getElementById('quote-counter').textContent = `${index + 1} / ${QUOTES.length}`;
+
+            if (animate) {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }
+        }, animate ? 300 : 0);
+    }
+
+    function nextQuote() {
+        quoteIndex = (quoteIndex + 1) % QUOTES.length;
+        displayQuote(quoteIndex);
+    }
+
+    function prevQuote() {
+        quoteIndex = (quoteIndex - 1 + QUOTES.length) % QUOTES.length;
+        displayQuote(quoteIndex);
+    }
+
+    function togglePause() {
+        isPaused = !isPaused;
+        const btn = document.getElementById('pause-quote');
+        if (isPaused) {
+            btn.textContent = '▶';
+            btn.classList.add('paused');
+            clearInterval(rotationInterval);
+        } else {
+            btn.textContent = '||';
+            btn.classList.remove('paused');
+            startRotation();
+        }
+    }
+
+    function startRotation() {
+        rotationInterval = setInterval(nextQuote, 12000);
+    }
+
+    document.getElementById('prev-quote').addEventListener('click', prevQuote);
+    document.getElementById('next-quote').addEventListener('click', nextQuote);
+    document.getElementById('pause-quote').addEventListener('click', togglePause);
+
+    displayQuote(quoteIndex, false);
+    startRotation();
     </script>
 </body>
 </html>
