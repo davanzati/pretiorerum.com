@@ -152,6 +152,36 @@
             text-transform: uppercase;
         }
 
+        footer {
+            text-align: center;
+            padding: 3rem 1rem 2rem;
+            border-top: 1px solid var(--gold);
+            margin-top: 3rem;
+        }
+
+        footer::before {
+            content: '❧';
+            display: block;
+            font-size: 1.5em;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        footer strong {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
         @media (max-width: 600px) {
             h1 {
                 font-size: 1.8rem;
@@ -223,8 +253,12 @@
         </section>
 
         <footer>
-            <div class="motto">Orbis non mentitur; pretium sequitur pecuniam.</div>
-            <div>The world does not lie; price follows money.</div>
+            <p><strong>Pretio Rerum</strong></p>
+            <p><em>Epistolae de Pretio Rerum</em> — Letters on the Price of Things</p>
+            <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--silver);">
+                <em>Orbis non mentitur; pretium sequitur pecuniam.</em><br>
+                The world does not lie; price follows money.
+            </p>
         </footer>
     </div>
 </body>
