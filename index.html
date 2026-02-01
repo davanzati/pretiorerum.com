@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epistolae de Pretio Rerum</title>
+    <meta name="description" content="Letters on the Price of Things. A study of money, value, and the patterns that repeat across centuries.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --parchment: #f4f1e8;
+            --ink: #2c2416;
+            --gold: #8b7355;
+            --silver: #71706e;
+            --accent: #6b5344;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'EB Garamond', Georgia, serif;
+            background: var(--parchment);
+            color: var(--ink);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 680px;
+            width: 100%;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-top: 2rem;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            color: var(--ink);
+        }
+
+        .subtitle {
+            font-style: italic;
+            font-size: 1.25rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .epigraph {
+            font-style: italic;
+            color: var(--silver);
+            border-left: 2px solid var(--gold);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .epigraph .latin {
+            margin-bottom: 0.25rem;
+        }
+
+        .epigraph .translation {
+            font-size: 0.9rem;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 2.5rem 0;
+            color: var(--gold);
+            letter-spacing: 0.5em;
+        }
+
+        section {
+            margin-bottom: 2.5rem;
+        }
+
+        h2 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        .scholars {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem 2rem;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .scholar {
+            color: var(--silver);
+        }
+
+        .scholar span {
+            color: var(--ink);
+        }
+
+        blockquote {
+            font-style: italic;
+            color: var(--accent);
+            margin: 1.5rem 0;
+            padding: 1rem 1.5rem;
+            background: rgba(107, 83, 68, 0.05);
+            border-radius: 2px;
+        }
+
+        footer {
+            margin-top: auto;
+            padding-top: 3rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--silver);
+        }
+
+        footer .motto {
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .coming-soon {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            .scholars {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Epistolae de Pretio Rerum</h1>
+            <div class="subtitle">Letters on the Price of Things</div>
+        </header>
+
+        <div class="epigraph">
+            <div class="latin">Plus argentum, minus pretium.</div>
+            <div class="translation">More money, less value.</div>
+        </div>
+
+        <section>
+            <p>
+                In the sixteenth century, silver flooded Europe from the mines of Potosí. Prices rose first in Seville, where the treasure ships arrived, and last in the distant markets of the East. Scholars at Salamanca and Florence observed the pattern and wrote what they saw: that money multiplies, that prices follow, and that those who touch new money first prosper while those who touch it last suffer.
+            </p>
+            <p>
+                Five centuries later, the pattern repeats. The silver is digital now, conjured by central banks rather than extracted from mountains. But the arithmetic is unchanged.
+            </p>
+        </section>
+
+        <div class="divider">* * *</div>
+
+        <section>
+            <h2>The Correspondents</h2>
+            <p>
+                Twelve scholars across five centuries have observed this pattern. Each writes to a contemporary, struggling to describe in the vocabulary of their own age what arithmetic itself proclaims:
+            </p>
+            <div class="scholars">
+                <div class="scholar"><span>Azpilcueta</span> · Salamanca, 1556</div>
+                <div class="scholar"><span>Davanzati</span> · Florence, 1588</div>
+                <div class="scholar"><span>Bodin</span> · Paris, 1568</div>
+                <div class="scholar"><span>Hume</span> · Edinburgh, 1752</div>
+                <div class="scholar"><span>Menger</span> · Vienna, 1871</div>
+                <div class="scholar"><span>Fisher</span> · Yale, 1911</div>
+                <div class="scholar"><span>Mises</span> · Vienna, 1912</div>
+                <div class="scholar"><span>Keynes</span> · Cambridge, 1936</div>
+                <div class="scholar"><span>Rueff</span> · Paris, 1971</div>
+                <div class="scholar"><span>Minsky</span> · New York, 1986</div>
+            </div>
+        </section>
+
+        <div class="divider">* * *</div>
+
+        <section>
+            <h2>The Thesis</h2>
+            <blockquote>
+                Money multiplies. Prices follow. Those near the source prosper; those far from it suffer. Metal endures. Paper does not.
+            </blockquote>
+            <p>
+                This is not prediction. It is observation. The mechanics of debasement, the distribution of inflation, the arithmetic of debt&mdash;these do not change because centuries pass.
+            </p>
+        </section>
+
+        <div class="divider">* * *</div>
+
+        <section style="text-align: center;">
+            <div class="coming-soon">Coming Soon</div>
+        </section>
+
+        <footer>
+            <div class="motto">Orbis non mentitur; pretium sequitur pecuniam.</div>
+            <div>The world does not lie; price follows money.</div>
+        </footer>
+    </div>
+</body>
+</html>
