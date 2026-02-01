@@ -373,6 +373,44 @@
             color: var(--medici-red);
         }
 
+        .coin-database-card {
+            background: linear-gradient(135deg, rgba(201,162,39,0.12), rgba(139,38,53,0.08));
+            border: 2px solid var(--florentine-gold);
+            border-radius: 6px;
+            padding: 20px 30px;
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .coin-db-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--florentine-gold);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .coin-db-subtitle {
+            font-size: 0.85em;
+            color: var(--ink-light);
+            margin-bottom: 12px;
+        }
+
+        .coin-db-coming {
+            display: inline-block;
+            font-family: 'Cinzel', serif;
+            font-size: 0.7em;
+            font-weight: 500;
+            color: var(--medici-red);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border: 1px solid var(--medici-red);
+            border-radius: 3px;
+        }
+
         @media (max-width: 800px) {
             .footer-links-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -519,9 +557,18 @@
                 <div class="link-list">
                     <a href="#">Calculator</a> ·
                     <a href="#">Ledger</a> ·
-                    <a href="#">Sheets</a>
+                    <a href="#">Sheets</a> ·
+                    <a href="#">API</a> ·
+                    <a href="#">MCP</a> ·
+                    <a href="#">GitHub</a>
                 </div>
             </div>
+        </div>
+
+        <div class="coin-database-card">
+            <div class="coin-db-title">Numismatic Database</div>
+            <div class="coin-db-subtitle">Constitutional Silver · World Bullion · Historical Coinage</div>
+            <div class="coin-db-coming">Coming Soon</div>
         </div>
 
         <div class="footer-flourish">✦ ❧ ✦</div>
