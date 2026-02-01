@@ -41,7 +41,7 @@
             position: relative;
         }
 
-        /* Parchment texture overlay with aged vignette */
+        /* Parchment texture overlay with aged vignette - Sala dei Pappagalli style */
         body::before {
             content: '';
             position: fixed;
@@ -50,10 +50,14 @@
             right: 0;
             bottom: 0;
             background:
-                radial-gradient(ellipse at center, transparent 40%, rgba(61, 41, 20, 0.06) 70%, rgba(61, 41, 20, 0.12) 100%),
-                /* Subtle diamond/tapestry pattern like Sala dei Pappagalli */
-                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' fill='none' stroke='%23c9a227' stroke-width='0.5' opacity='0.08'/%3E%3C/svg%3E"),
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+                /* Deep vignette like aged fresco */
+                radial-gradient(ellipse at center, transparent 30%, rgba(61, 41, 20, 0.05) 60%, rgba(61, 41, 20, 0.15) 100%),
+                /* Diamond tapestry pattern */
+                url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 0L80 40L40 80L0 40Z' fill='none' stroke='%23c9a227' stroke-width='0.5' opacity='0.1'/%3E%3Cpath d='M40 10L70 40L40 70L10 40Z' fill='none' stroke='%238b2635' stroke-width='0.3' opacity='0.06'/%3E%3Ccircle cx='40' cy='40' r='3' fill='%23c9a227' opacity='0.05'/%3E%3C/svg%3E"),
+                /* Subtle fleur pattern overlay */
+                url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M60 55 C57 58 57 62 60 65 C63 62 63 58 60 55' fill='%23c9a227' opacity='0.04'/%3E%3C/svg%3E"),
+                /* Paper texture */
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
             pointer-events: none;
             z-index: 0;
         }
@@ -84,37 +88,113 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 8px;
+            height: 12px;
             background:
-                linear-gradient(90deg,
-                    transparent 0%,
-                    var(--florentine-gold) 10%,
-                    var(--florentine-gold) 90%,
-                    transparent 100%
-                );
-            opacity: 0.7;
+                linear-gradient(180deg, var(--florentine-gold) 0%, #a07d1c 100%);
             z-index: 2;
+            box-shadow: 0 2px 8px rgba(61, 41, 20, 0.3);
+        }
+
+        .palazzo-frieze::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 0;
+            right: 0;
+            height: 25px;
+            background:
+                /* Dentil molding pattern */
+                repeating-linear-gradient(
+                    90deg,
+                    var(--medici-red) 0px,
+                    var(--medici-red) 15px,
+                    transparent 15px,
+                    transparent 20px
+                );
+            opacity: 0.6;
         }
 
         .palazzo-frieze::after {
             content: '';
             position: absolute;
-            top: 8px;
-            left: 5%;
-            right: 5%;
-            height: 3px;
-            background: repeating-linear-gradient(
-                90deg,
-                var(--medici-red) 0px,
-                var(--medici-red) 20px,
-                transparent 20px,
-                transparent 25px,
-                var(--florentine-gold) 25px,
-                var(--florentine-gold) 45px,
-                transparent 45px,
-                transparent 50px
-            );
-            opacity: 0.5;
+            top: 37px;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background:
+                linear-gradient(180deg, var(--florentine-gold) 0%, transparent 100%);
+            opacity: 0.4;
+        }
+
+        /* Side pilaster decorations */
+        .palazzo-pilaster-left,
+        .palazzo-pilaster-right {
+            position: fixed;
+            top: 60px;
+            bottom: 60px;
+            width: 25px;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .palazzo-pilaster-left {
+            left: 10px;
+            background:
+                repeating-linear-gradient(
+                    180deg,
+                    var(--florentine-gold) 0px,
+                    var(--florentine-gold) 3px,
+                    transparent 3px,
+                    transparent 30px,
+                    var(--medici-red) 30px,
+                    var(--medici-red) 33px,
+                    transparent 33px,
+                    transparent 60px
+                ),
+                linear-gradient(90deg, var(--florentine-gold) 0px, var(--florentine-gold) 2px, transparent 2px);
+        }
+
+        .palazzo-pilaster-right {
+            right: 10px;
+            background:
+                repeating-linear-gradient(
+                    180deg,
+                    var(--florentine-gold) 0px,
+                    var(--florentine-gold) 3px,
+                    transparent 3px,
+                    transparent 30px,
+                    var(--medici-red) 30px,
+                    var(--medici-red) 33px,
+                    transparent 33px,
+                    transparent 60px
+                ),
+                linear-gradient(90deg, transparent calc(100% - 2px), var(--florentine-gold) calc(100% - 2px));
+        }
+
+        /* Heraldic shield at top center */
+        .palazzo-shield {
+            position: fixed;
+            top: 45px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 60px;
+            z-index: 3;
+            opacity: 0.7;
+            background:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 60'%3E%3Cpath d='M5 5 L5 35 Q5 55 25 58 Q45 55 45 35 L45 5 Z' fill='%238b2635' stroke='%23c9a227' stroke-width='2'/%3E%3Cpath d='M25 15 L25 22 M25 32 L25 45 M18 26 L32 26' stroke='%23c9a227' stroke-width='2' fill='none'/%3E%3Ccircle cx='25' cy='27' r='8' fill='none' stroke='%23c9a227' stroke-width='1.5'/%3E%3Cpath d='M25 20 C22 23 22 27 25 30 C28 27 28 23 25 20' fill='%23c9a227' opacity='0.8'/%3E%3C/svg%3E");
+        }
+
+        /* Bottom decorative band */
+        .palazzo-base {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(0deg, var(--florentine-gold) 0%, #a07d1c 50%, transparent 100%);
+            z-index: 2;
+            opacity: 0.6;
         }
 
         .container {
@@ -127,38 +207,45 @@
         header {
             text-align: center;
             margin-bottom: 3rem;
-            padding: 3.5rem 1.5rem 2.5rem;
-            border-bottom: 2px solid var(--florentine-gold);
+            margin-top: 2rem;
+            padding: 4rem 2rem 3rem;
+            border: 3px double var(--florentine-gold);
+            border-top: none;
             position: relative;
             background:
-                radial-gradient(ellipse at center top, rgba(201,162,39,0.1) 0%, transparent 60%),
-                linear-gradient(180deg, rgba(201,162,39,0.04) 0%, transparent 100%);
+                /* Illuminated manuscript glow */
+                radial-gradient(ellipse at center, rgba(201,162,39,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at center top, rgba(139,38,53,0.08) 0%, transparent 40%),
+                linear-gradient(180deg, rgba(244,238,216,0.9) 0%, rgba(244,238,216,0.7) 100%);
             z-index: 1;
+            box-shadow:
+                inset 0 0 60px rgba(201,162,39,0.1),
+                0 4px 20px rgba(61,41,20,0.15);
         }
 
-        /* Top cartouche ornament */
+        /* Top cartouche ornament - elaborate scroll */
         header::before {
-            content: '⚜ ❧ ⚜';
+            content: '❦ ⚜ ❦';
             position: absolute;
-            top: 12px;
+            top: 8px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 1.4em;
+            font-size: 1.6em;
             color: var(--florentine-gold);
-            letter-spacing: 12px;
-            text-shadow: 0 2px 4px rgba(201, 162, 39, 0.4);
+            letter-spacing: 15px;
+            text-shadow: 0 2px 4px rgba(201, 162, 39, 0.5), 0 0 20px rgba(201, 162, 39, 0.3);
         }
 
-        /* Bottom flourish SVG */
+        /* Bottom flourish SVG - elaborate scroll work */
         header::after {
             content: '';
             position: absolute;
-            bottom: -8px;
+            bottom: -12px;
             left: 50%;
             transform: translateX(-50%);
-            width: 250px;
-            height: 15px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='15' viewBox='0 0 250 15'%3E%3Cpath d='M0,7 Q30,0 60,7 T125,7 T190,7 T250,7' stroke='%23c9a227' fill='none' stroke-width='1.5' opacity='0.6'/%3E%3Ccircle cx='125' cy='7' r='4' fill='%23c9a227' opacity='0.7'/%3E%3Ccircle cx='60' cy='7' r='2' fill='%23c9a227' opacity='0.5'/%3E%3Ccircle cx='190' cy='7' r='2' fill='%23c9a227' opacity='0.5'/%3E%3C/svg%3E") no-repeat center;
+            width: 350px;
+            height: 25px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='350' height='25' viewBox='0 0 350 25'%3E%3Cpath d='M0,12 Q40,0 80,12 T175,12 T270,12 T350,12' stroke='%23c9a227' fill='none' stroke-width='2' opacity='0.7'/%3E%3Cpath d='M0,12 Q40,24 80,12 T175,12 T270,12 T350,12' stroke='%23c9a227' fill='none' stroke-width='1' opacity='0.4'/%3E%3Ccircle cx='175' cy='12' r='6' fill='%238b2635' stroke='%23c9a227' stroke-width='2'/%3E%3Ccircle cx='80' cy='12' r='3' fill='%23c9a227' opacity='0.6'/%3E%3Ccircle cx='270' cy='12' r='3' fill='%23c9a227' opacity='0.6'/%3E%3Cpath d='M170 8 L175 4 L180 8 M170 16 L175 20 L180 16' stroke='%23c9a227' stroke-width='1' fill='none' opacity='0.8'/%3E%3C/svg%3E") no-repeat center;
         }
 
         .header-flourish {
@@ -784,6 +871,10 @@
 </head>
 <body>
     <div class="palazzo-frieze"></div>
+    <div class="palazzo-shield"></div>
+    <div class="palazzo-pilaster-left"></div>
+    <div class="palazzo-pilaster-right"></div>
+    <div class="palazzo-base"></div>
     <div class="container">
         <header>
             <div class="header-flourish">✦ ❧ ✦</div>
