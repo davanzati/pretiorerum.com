@@ -7,14 +7,19 @@
     <meta name="description" content="Letters on the Price of Things. A study of money, value, and the patterns that repeat across centuries.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --parchment: #f4f1e8;
+            --parchment: #f4eed8;
             --ink: #2c2416;
+            --ink-brown: #3d2914;
+            --ink-light: #5c4033;
             --gold: #8b7355;
             --silver: #71706e;
             --accent: #6b5344;
+            --florentine-gold: #c9a227;
+            --medici-red: #8b2635;
+            --verde-antico: #2d5a4a;
         }
 
         * {
@@ -128,19 +133,6 @@
             border-radius: 2px;
         }
 
-        footer {
-            margin-top: auto;
-            padding-top: 3rem;
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--silver);
-        }
-
-        footer .motto {
-            font-style: italic;
-            margin-bottom: 0.5rem;
-        }
-
         .coming-soon {
             display: inline-block;
             margin-top: 1rem;
@@ -152,34 +144,239 @@
             text-transform: uppercase;
         }
 
+        /* Footer Renaissance Styling */
         footer {
             text-align: center;
-            padding: 3rem 1rem 2rem;
-            border-top: 1px solid var(--gold);
+            padding: 2rem 0;
+            border-top: 1px solid var(--florentine-gold);
             margin-top: 3rem;
+            width: 100%;
+            max-width: 950px;
         }
 
-        footer::before {
-            content: '❧';
-            display: block;
-            font-size: 1.5em;
-            color: var(--gold);
-            margin-bottom: 1.5rem;
+        .footer-flourish {
+            color: var(--florentine-gold);
+            font-size: 1em;
+            letter-spacing: 6px;
+            margin: 15px 0;
         }
 
-        footer strong {
-            font-family: 'Cormorant Garamond', Georgia, serif;
+        .footer-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4em;
             font-weight: 600;
-            letter-spacing: 0.05em;
+            color: var(--medici-red);
+            letter-spacing: 4px;
+            margin-bottom: 5px;
         }
 
-        footer a {
-            color: var(--accent);
+        .footer-subtitle {
+            font-size: 0.95em;
+            color: var(--ink-brown);
+        }
+
+        .footer-about-card {
+            background: linear-gradient(135deg, rgba(139,38,53,0.08), rgba(201,162,39,0.05));
+            border: 1px solid var(--medici-red);
+            border-radius: 4px;
+            padding: 15px 25px;
+            margin: 15px auto;
+            max-width: 950px;
+            text-align: center;
+        }
+
+        .footer-latin {
+            font-size: 0.95em;
+            color: var(--ink-brown);
+            line-height: 1.6;
+            margin-bottom: 8px;
+            text-indent: 0;
+            text-align: center;
+        }
+
+        .footer-attribution {
+            font-size: 0.8em;
+            color: var(--ink-light);
+            margin-bottom: 0;
+            text-indent: 0;
+            text-align: center;
+        }
+
+        .footer-latin a,
+        .footer-attribution a {
+            color: var(--medici-red);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--medici-red);
+        }
+
+        .footer-latin a:hover,
+        .footer-attribution a:hover {
+            color: var(--florentine-gold);
+            border-bottom-color: var(--florentine-gold);
+        }
+
+        .footer-price-card {
+            background: linear-gradient(135deg, rgba(201,162,39,0.08), rgba(139,38,53,0.03));
+            border: 1px solid var(--florentine-gold);
+            border-radius: 4px;
+            padding: 15px 20px;
+            margin: 15px auto;
+            max-width: 950px;
+        }
+
+        .price-table {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto 12px;
+            border-collapse: collapse;
+            font-size: 0.85em;
+        }
+
+        .price-table th {
+            font-family: 'Cinzel', serif;
+            font-weight: 500;
+            font-size: 0.8em;
+            color: var(--ink-light);
+            padding: 4px 12px;
+            border-bottom: 1px solid rgba(201,162,39,0.3);
+        }
+
+        .price-table td {
+            padding: 6px 12px;
+            color: var(--ink-brown);
+        }
+
+        .price-table .metal {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            color: var(--florentine-gold);
+            text-align: left;
+        }
+
+        .price-table .usd {
+            font-weight: 600;
+            color: var(--florentine-gold);
+        }
+
+        .price-table .ratio-cell {
+            text-align: center;
+            vertical-align: middle;
+            font-size: 0.9em;
+            color: var(--florentine-gold);
+            border-left: 1px solid rgba(201,162,39,0.3);
+        }
+
+        .footer-ratios {
+            font-size: 0.8em;
+            color: var(--ink-light);
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px dashed rgba(201,162,39,0.3);
+        }
+
+        .footer-ratios .red {
+            color: var(--medici-red);
+        }
+
+        .footer-updated {
+            font-size: 0.7em;
+            color: var(--ink-light);
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        .trader-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 15px auto;
+            padding: 8px 16px;
+            background: rgba(45,90,74,0.08);
+            border: 1px solid rgba(45,90,74,0.3);
+            border-radius: 20px;
+            max-width: fit-content;
+        }
+
+        .trader-name {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85em;
+            font-weight: 600;
+            color: var(--verde-antico);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .trader-name:hover {
+            color: var(--medici-red);
+        }
+
+        .trader-flair {
+            font-family: monospace;
+            font-size: 0.8em;
+            font-weight: 600;
+            color: var(--florentine-gold);
+            background: rgba(201,162,39,0.12);
+            padding: 2px 8px;
+            border-radius: 3px;
+        }
+
+        .trader-sub {
+            font-size: 0.75em;
+            color: var(--ink-light);
+            font-style: italic;
             text-decoration: none;
         }
 
-        footer a:hover {
-            text-decoration: underline;
+        .trader-sub:hover {
+            color: var(--medici-red);
+        }
+
+        .footer-links-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 950px;
+            margin: 15px auto;
+        }
+
+        .link-card {
+            background: rgba(201,162,39,0.05);
+            border: 1px solid rgba(201,162,39,0.4);
+            border-radius: 3px;
+            padding: 10px;
+        }
+
+        .link-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.75em;
+            font-weight: 600;
+            color: var(--florentine-gold);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid rgba(201,162,39,0.2);
+        }
+
+        .link-list {
+            font-size: 0.75em;
+            line-height: 1.7;
+        }
+
+        .link-list a {
+            color: var(--ink-light);
+            text-decoration: none;
+        }
+
+        .link-list a:hover {
+            color: var(--medici-red);
+        }
+
+        @media (max-width: 800px) {
+            .footer-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 600px) {
@@ -188,6 +385,14 @@
             }
             .scholars {
                 grid-template-columns: 1fr;
+            }
+            .footer-links-grid {
+                grid-template-columns: 1fr;
+            }
+            .price-table th,
+            .price-table td {
+                padding: 4px 6px;
+                font-size: 0.8em;
             }
         }
     </style>
@@ -251,15 +456,75 @@
         <section style="text-align: center;">
             <div class="coming-soon">Coming Soon</div>
         </section>
-
-        <footer>
-            <p><strong>Pretio Rerum</strong></p>
-            <p><em>Epistolae de Pretio Rerum</em> — Letters on the Price of Things</p>
-            <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--silver);">
-                <em>Orbis non mentitur; pretium sequitur pecuniam.</em><br>
-                The world does not lie; price follows money.
-            </p>
-        </footer>
     </div>
+
+    <footer>
+        <div class="footer-flourish">✦ ❧ ✦</div>
+        <div class="footer-title">PRETIO RERUM</div>
+        <div class="footer-subtitle"><em>"Epistolae de Pretio Rerum"</em> — Letters on the Price of Things</div>
+
+        <div class="footer-about-card">
+            <p class="footer-latin"><em>Epistolae <a href="https://en.wikipedia.org/wiki/Bernardo_Davanzati" target="_blank">Bernardi Davanzati</a>, mercatoris Florentini, anno 2026 e somno excitati, ab <a href="https://en.wikipedia.org/wiki/Abraham_Ortelius" target="_blank">Ortelio</a> edocti de arcana pecuniae modernae, de machinis cogitantibus, de mirabilibus et portentis huius novi saeculi.</em></p>
+            <p class="footer-attribution">Ex epistolis <a href="https://en.wikipedia.org/wiki/Mart%C3%ADn_de_Azpilcueta" target="_blank"><em>Martini de Azpilcueta</em></a> et <a href="https://en.wikipedia.org/wiki/Bernardo_Davanzati" target="_blank"><em>Bernardi Davanzati</em></a>, ab <a href="https://en.wikipedia.org/wiki/Abraham_Ortelius" target="_blank"><em>Ortelio</em></a> collectis.</p>
+        </div>
+
+        <div class="footer-price-card">
+            <table class="price-table">
+                <thead>
+                    <tr><th></th><th>USD</th><th>EUR</th><th>GBP</th><th>CHF</th><th>JPY</th><th>Ratio</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="metal">Gold</td><td class="usd">$4,889</td><td>€4,178</td><td>£3,907</td><td>CHF 4,302</td><td>¥734K</td><td rowspan="2" class="ratio-cell">Au:Ag<br><strong>57.4</strong></td></tr>
+                    <tr><td class="metal">Silver</td><td class="usd">$85.15</td><td>€72.76</td><td>£68.04</td><td>CHF 74.93</td><td>¥12.7K</td></tr>
+                </tbody>
+            </table>
+            <div class="footer-ratios">DXY <strong class="red">97.15</strong> · EUR/USD <strong>1.17</strong> · GBP/USD <strong>1.25</strong> · USD/JPY <strong>150.1</strong></div>
+            <div class="footer-updated">I Februarii MMXXVI · 20260201 · 15:15 UTC</div>
+        </div>
+
+        <div class="trader-card">
+            <a href="https://reddit.com/u/Davanzati" target="_blank" class="trader-name">u/Davanzati</a>
+            <span class="trader-flair">S: 47 | B: 23</span>
+            <a href="https://reddit.com/r/pmsforsale" target="_blank" class="trader-sub">r/pmsforsale</a>
+        </div>
+
+        <div class="footer-links-grid">
+            <div class="link-card">
+                <div class="link-label">Sequere</div>
+                <div class="link-list">
+                    <a href="https://pretiorerum.substack.com">Substack</a> ·
+                    <a href="https://reddit.com/u/Davanzati">Reddit</a> ·
+                    <a href="https://x.com/Davanzati2026">X</a> ·
+                    <a href="https://medium.com/@davanzati2026">Medium</a> ·
+                    <a href="https://tiktok.com/@davanzati2026">TikTok</a>
+                </div>
+            </div>
+            <div class="link-card">
+                <div class="link-label">Sustine</div>
+                <div class="link-list">
+                    <a href="https://pretiorerum.substack.com">Subscribe</a> ·
+                    <a href="https://ko-fi.com/davanzati">Ko-fi</a> ·
+                    <a href="mailto:davanzati2026@proton.me">Real Coins</a>
+                </div>
+            </div>
+            <div class="link-card">
+                <div class="link-label">Scribe</div>
+                <div class="link-list">
+                    <a href="mailto:davanzati2026@proton.me">ProtonMail</a> ·
+                    <a href="https://reddit.com/message/compose/?to=Davanzati">Reddit DM</a>
+                </div>
+            </div>
+            <div class="link-card">
+                <div class="link-label">Aedifica</div>
+                <div class="link-list">
+                    <a href="#">Calculator</a> ·
+                    <a href="#">Ledger</a> ·
+                    <a href="#">Sheets</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-flourish">✦ ❧ ✦</div>
+    </footer>
 </body>
 </html>
